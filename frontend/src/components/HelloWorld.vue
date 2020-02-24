@@ -18,7 +18,22 @@
         </tr>
       </tbody>
     </table>
+    <div class="users">
+    <table>
+      <thead>
+       <tr>
+        <th>Username</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr v-for='(usr, x) in users' :key='x'>
+          <td>{{ usr.username }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -27,15 +42,31 @@ export default {
   data() {
     return {
       cars: null,
+      users: null,
     };
   },
   created(){
+    this.getCars()
+    this.getUsers()
+  },
+  methods: {
+  getCars () {
     fetch("http://127.0.0.1:8000/api/cars/")
     .then(response => response.json())
     .then((res) => {
       this.cars = res;
+
+      })
+    },
+  getUsers () {
+    fetch("http://127.0.0.1:8000/api/users/")
+    .then(response => response.json())
+    .then((res) => {
+      this.users = res;
+
     })
-    }
+  }
+}
 
 };
 </script>
