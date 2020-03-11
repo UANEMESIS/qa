@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import home_page
 from django.views.generic import TemplateView
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from . import settings
 
 
 urlpatterns = [
@@ -25,3 +28,7 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"),name="app",),
     path("api/", include("core.urls"))
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

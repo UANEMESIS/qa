@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import all_cars, all_users
+from .views import all_cars, all_users, all_certificates, upload_image
 # from .views import home_page
 # from django.views.generic import TemplateView
 
 urlpatterns = [
     path('cars/', all_cars),
     path('users/', all_users),
+    path('certificates/', all_certificates),
+    path('upload/', upload_image)
     #path('', home_page),
     # path("", TemplateView.as_view(template_name="home.html"),name="app",),
 ]
